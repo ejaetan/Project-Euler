@@ -1,4 +1,6 @@
 /* 
+* author: ejaetan 
+*
 * A palindromic number reads the same both ways. The largest palindrome 
 * made from the product of two 2-digit numbers is 9009 = 91 × 99.
 * Find the largest palindrome made from the product of two 3-digit numbers. 
@@ -11,42 +13,37 @@
 int palin(int c);
 void itoa(int n,char s[]);
 void reverse (char s[]);
+
 int main()
 {
-	long a,b,c,e;
-	
-	
-	for(a = b = 999; (100 <= a && 100 <= b)  &&  (b <= 999 && a <= 999); a--, b = 999)
-	{
-		c = a * b;
-		//printf("%ld\n", c);
-		if(palin(c) == 1)
-		{
-			printf("The answer is %ld\n.", c);
-			break;
-		}
-		else if (palin(c) == 0)
-			for(b--;(100 <= a && 100 <= b)  &&  (b <= 999 && a <= 999); b--) {
-				//printf("%ld\n", c);
-				c = a * b;
-				if(palin(c) == 1)
-				{
-					printf("The answer is %ld\n.", c);
-					break;
-				}
-			}
-	}
-}
+	int a,b,c;
+	int e = 0;
 
+	for(a = 999; a <= 999 && a >= 100; a--)
+	{
+		for(b = 999; b <= 999 && b >= 100; b--)
+		{
+			c = a * b;
+			if(palin(c) == 1)
+			{
+				if(e < c)
+					e = c;
+			}
+		}			
+	}
+	printf("%d\n", e);
+	
+	return 0;
+}		
+		
 int palin(int c)
 {
 	int e;
-	char d[1000000];
+	char d[100];
 	
 	itoa(c, d);
 	reverse(d); 
 	e = atoi(d);
-	
 	if (e == c)
 		return 1;
 	else
@@ -56,12 +53,12 @@ int palin(int c)
 
 void reverse (char s[])
 {
-	long c, i, j;
+	int c, k, j;
 	
-	for(i = 0, j = strlen(s) - 1; i < j; i++, j--)
+	for(k = 0, j = strlen(s) - 1; k < j; k++, j--)
 	{
-		c = s[i];
-		s[i] = s[j];
+		c = s[k];
+		s[k] = s[j];
 		s[j] = c;
 	}
 }
@@ -78,6 +75,9 @@ void itoa(int n,char s[])
 	
 	if (n/10)
 		itoa(n/10, s);
+	else
+		i = 0;
+	
 	s[i++] = n % 10 + '0';
 	s[i] = '\0';
 
