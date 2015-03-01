@@ -10,6 +10,16 @@
 
 #include <stdio.h>
 
+/*
+* This is the correct solution but its efficiency can be improved.
+*
+*
+* Critiques on this solution.
+* 1. The program has to go through every amount from 0 to n-1 in order
+*    to get the right answer, which is pretty time consuming. 
+* 
+*/
+
 int main()
 {
 	int i, a;
@@ -26,6 +36,34 @@ int main()
 	}
 	
 	printf("%d\n", b);			
+	
+	return 0;
+}
+
+
+/* Better Solution */
+int sum_of_multiply_of_n(int target, int n)
+{
+	int p; 
+	
+	//Find the largest number below the given number x, so it's (x-1)
+	target = target -1; 
+	
+	//find the total n factors of target
+	p = target / n;
+	
+	//count the sum_of_multiply_of_n 
+	return (n * (p * (p + 1)) /2);
+}
+
+int main(){
+	int target = 1000;
+	int sum;
+	
+	sum = (sum_of_multiply_of_n(target,3) + sum_of_multiply_of_n(target,5) 
+		  - sum_of_multiply_of_n(target,15));
+	
+	printf("%d\n", sum);
 	
 	return 0;
 }
