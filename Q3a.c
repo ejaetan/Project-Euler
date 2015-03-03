@@ -21,15 +21,15 @@ int main()
 	p = ceil(sqrt(i));
 	
 	for (a = 2; a <= p; a++){
-		if (i%a == 0){
+		if (i%a == 0){		/* is whole number, cause prime is whole number */
 			q = i/a;
-			if (prime(a) == 0)
+			if (prime(a) == 0)	/* not prime */
 				;
-			else if (prime(a) == 1)
+			else if (prime(a) == 1) /* is prime */
 			b = a;
-			if(prime(q) == 0) 
+			if(prime(q) == 0) 		/* not prime */
 				;
-			else if (prime(q) == 1){
+			else if (prime(q) == 1){	/* is prime */
 				b = q;
 				break;
 			}	
