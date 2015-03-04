@@ -33,7 +33,14 @@ int main()
 
 }
 
-
+/*
+* So,
+*	 1^2 + ... + 10^2 = 385
+* 	11^2 + ... + 20^2 = 2485
+* 	21^2 + ... + 30^2 = 6585
+* 
+* There is an obvious recursive pattern: Tn = Tn-1 + 2000 * (n-1) + 100
+*/
 
 int sum_of_square(int target)
 {
